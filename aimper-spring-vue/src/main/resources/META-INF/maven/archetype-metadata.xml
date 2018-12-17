@@ -57,6 +57,56 @@
                 <include>**/*.java</include>
             </includes>
         </fileSet>
+
+        <!-- ServiceImpl Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>ServiceImpl</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>ServiceImpl/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+        <!-- Rest Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>Rest</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>Rest/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+        <!-- Rest Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>IntegrationTests</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>IntegrationTests/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>IntegrationTests/src/test/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+
         <!--<fileSet filtered="true" packaged="true" encoding="UTF-8">-->
         <!--<directory>.</directory>-->
         <!--<includes>-->
