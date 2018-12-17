@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--
+        <parent>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>wmparent</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </parent>
+    -->
+    <groupId>com.perceptnet.archetype</groupId>
+    <artifactId>aimper-spring-vue</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- <packaging>maven-archetype</packaging> -->
+    <packaging>jar</packaging>
+
+    <build>
+        <finalName>pn-${project.artifactId}-${project.version}</finalName>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>3.0.1</version>
+            </extension>
+        </extensions>
+    </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+</project>

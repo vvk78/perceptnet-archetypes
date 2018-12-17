@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${artifactId}-parent</artifactId>
+        <version>${version}</version>
+    </parent>
+
+    <artifactId>datamodel</artifactId>
+    <name>Datamodel</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>aimper-dommetadata</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>aimper-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Strictly speaking, these dependencies are not needed for compilation, just for code generation. But buggy exec
+             plugin does not let me configure execution classpath properly, so this is a hack until bug in exec plugin is fixed.
+             Note that <scope>provided</scope> should free us from getting transitive aimper-generation dependency-->
+        <dependency>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>aimper-generation</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>aimper-dbupdate</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- generate DOM sources -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>generateDomSources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <classpathScope>compile</classpathScope>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>-DDomGenerationConfig.ROOT_OUTPUT_DIR=${project.build.directory}/generated-sources</argument>
+                                <argument>-DDomGenerationConfig.DOM_ROOT_PKG=${package}.dom</argument>
+                                <argument>com.aim.aimper.tools.DomGenerator</argument>
+                                <argument>${package}.datamodel.${ParentName}Space</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- add generated DOM sources to second compilation pass -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>addGeneratedDomSources</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Custom compilation mode -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <id>build-generated-code</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>PREPARE_UPDATE</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>generateDbUpdate</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>java</executable>
+                                    <classpathScope>compile</classpathScope>
+                                    <arguments>
+                                        <argument>-classpath</argument>
+                                        <classpath/>
+                                        <argument>-DDomGenerationConfig.ROOT_OUTPUT_DIR=${project.build.directory}/generated-sources</argument>
+                                        <argument>-DDbupdateConfig.PATCH_FILES_DIR=${project.basedir}/../Database\DbPatches</argument>
+                                        <argument>-DAimperConfig=AimperConfig-UpdateSchema</argument>
+                                        <argument>com.aim.aimper.tools.AimperToolkit</argument>
+                                        <argument>${package}.datamodel.PolyglotSpace</argument>
+                                        <argument>db_update=update_prepare_and_execute</argument>
+                                        <argument>connections_resource=db_connection.properties</argument>
+                                        <argument>schema=${artifactId}</argument>
+                                        <argument>create_schema_sql_file=${project.build.directory}/generated-sources/Database/Create${ParentName}SpaceDb.sql</argument>
+                                        <argument>change_log=change_log.txt</argument>
+                                        <argument>-UI</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>

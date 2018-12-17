@@ -1,0 +1,102 @@
+<archetype-descriptor name="maven-archetype">
+    <requiredProperties>
+        <requiredProperty key="ParentName">
+            <defaultValue>${artifactId.substring(0,1).toUpperCase()}${artifactId.substring(1)}</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+
+    <fileSets>
+        <!-- Conf Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>Conf</directory>
+            <includes>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+                <include>**/*.yaml</include>
+                <include>**/*.json</include>
+            </includes>
+        </fileSet>
+        <!-- Datamodel Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>Datamodel</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>Datamodel/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+        <!-- ServiceApiDto Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>ServiceApiDto</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>ServiceApiDto/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+        <!-- ServiceApi Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>ServiceApi</directory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+            <directory>ServiceApi/src/main/java</directory>
+            <includes>
+                <include>**/*.java</include>
+            </includes>
+        </fileSet>
+        <!--<fileSet filtered="true" packaged="true" encoding="UTF-8">-->
+        <!--<directory>.</directory>-->
+        <!--<includes>-->
+        <!--<include>pom.xml</include>-->
+        <!--</includes>-->
+        <!--</fileSet>-->
+
+    </fileSets>
+
+    <!--<modules>-->
+    <!--<module dir="Conf" name="Conf">-->
+    <!--<fileSets>-->
+    <!--<fileSet filtered="true" packaged="false" encoding="UTF-8">-->
+    <!--<directory>src/main/resources</directory>-->
+    <!--<includes>-->
+    <!--<include>**/*.properties</include>-->
+    <!--<include>**/*.xml</include>-->
+    <!--<include>**/*.yaml</include>-->
+    <!--<include>**/*.json</include>-->
+    <!--</includes>-->
+    <!--</fileSet>-->
+    <!--</fileSets>-->
+    <!--</module>-->
+    <!--<module dir="Datamodel" name="Datamodel">-->
+    <!--<fileSets>-->
+    <!--<fileSet filtered="true" packaged="true" encoding="UTF-8">-->
+    <!--<directory>src/main/java</directory>-->
+    <!--<includes>-->
+    <!--<include>**/*.java</include>-->
+    <!--</includes>-->
+    <!--</fileSet>-->
+    <!--&lt;!&ndash;<fileSet filtered="true" packaged="true" encoding="UTF-8">&ndash;&gt;-->
+    <!--&lt;!&ndash;<directory>.</directory>&ndash;&gt;-->
+    <!--&lt;!&ndash;<includes>&ndash;&gt;-->
+    <!--&lt;!&ndash;<include>pom.xml</include>&ndash;&gt;-->
+    <!--&lt;!&ndash;</includes>&ndash;&gt;-->
+    <!--&lt;!&ndash;</fileSet>&ndash;&gt;-->
+    <!--</fileSets>-->
+    <!--</module>-->
+    <!--</modules>-->
+
+
+</archetype-descriptor>
