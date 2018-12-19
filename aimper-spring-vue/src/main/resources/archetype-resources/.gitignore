@@ -2,4 +2,5 @@
 target
 *.iml
 /integration-tests/temp
+/integration-tests/log
 

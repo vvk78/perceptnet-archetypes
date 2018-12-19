@@ -47,6 +47,19 @@
     </dependencies>
 
     <build>
+
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>target/generated-sources/resources</directory>
+                <includes>
+                    <include>**/*.hbm.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- generate DOM sources -->
             <plugin>
@@ -161,7 +174,8 @@
                                         <argument>db_update=update_prepare_and_execute</argument>
                                         <argument>connections_resource=db_connection.properties</argument>
                                         <argument>schema=${artifactId}</argument>
-                                        <argument>create_schema_sql_file=${project.build.directory}/generated-sources/Database/Create${ParentName}SpaceDb.sql</argument>
+                                        <argument>create_schema_sql_file=${project.build.directory}/generated-sources/Database/Create${ParentName}SpaceDb.sql
+                                        </argument>
                                         <argument>change_log=change_log.txt</argument>
                                         <argument>-UI</argument>
                                     </arguments>

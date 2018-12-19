@@ -46,7 +46,7 @@
         <Logger name="com.aim.aimviewer" level="info" additivity="true">
             <AppenderRef ref="AsyncALL"/>
         </Logger>
-        <Logger name="wordmemo.queries" level="trace" additivity="false">
+        <Logger name="${artifactId}.queries" level="trace" additivity="false">
             <AppenderRef ref="CompiledQueries"/>
         </Logger>
 

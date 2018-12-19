@@ -1,4 +1,4 @@
-package ${package}.api.reference;
+package ${package}.service.reference;
 
 import ${package}.general.dto.BaseUpdatableDto;
 

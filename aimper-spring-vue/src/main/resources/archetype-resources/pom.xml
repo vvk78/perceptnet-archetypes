@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!--
-    <parent>
-        <groupId>com.perceptnet.wordmemo</groupId>
-        <artifactId>wmparent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
--->
+    <!--
+        <parent>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>wmparent</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </parent>
+    -->
 
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}-parent</artifactId>
@@ -17,13 +17,13 @@
     <modules>
         <module>Conf</module>
         <module>Datamodel</module>
-        <module>Database</module>
+        <!--<module>Database</module>-->
         <module>ServiceApi</module>
         <module>ServiceApiDto</module>
         <module>ServiceImpl</module>
         <module>Rest</module>
-        <module>Web</module>
         <module>IntegrationTests</module>
+        <!--<module>Web</module>-->
     </modules>
 
     <dependencyManagement>
@@ -95,16 +95,26 @@
 
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
-                <!--<exclusions>-->
-                <!--<exclusion>-->
-                <!--<groupId>commons-logging</groupId>-->
-                <!--<artifactId>commons-logging</artifactId>-->
-                <!--</exclusion>-->
-                <!--</exclusions>-->
-                <type>jar</type>
-                <scope>compile</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -177,18 +187,6 @@
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-hibernate4</artifactId>
                 <version>${jackson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
             </dependency>
 
             <dependency>
@@ -305,43 +303,31 @@
             </dependency>
             <dependency>
                 <groupId>com.perceptnet.commons</groupId>
+                <artifactId>resource-str</artifactId>
+                <version>${perceptnet-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.perceptnet.commons</groupId>
                 <artifactId>tests</artifactId>
                 <version>${perceptnet-commons.version}</version>
                 <scope>test</scope>
             </dependency>
 
-
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.21</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.1</version>
-        </dependency>
-
+        <!-- dependencies common for all modules -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.perceptnet.commons</groupId>
             <artifactId>tests</artifactId>
         </dependency>
     </dependencies>
-       
+
 
     <build>
         <plugins>

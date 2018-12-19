@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -13,6 +14,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!-- other project modules -->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>conf</artifactId>
+            <version>${version}</version>
+        </dependency>
         <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>service-api-dto</artifactId>
@@ -23,11 +30,53 @@
             <artifactId>service-api</artifactId>
             <version>${version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>${groupId}</groupId>-->
-            <!--<artifactId>dao</artifactId>-->
-            <!--<version>${version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>datamodel</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+        <!-- libraries -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.perceptnet.wordmemo</groupId>
+            <artifactId>aimper-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.commons</groupId>
+            <artifactId>reflection</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.commons</groupId>
+            <artifactId>beanprocessing</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.commons</groupId>
+            <artifactId>utils</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 

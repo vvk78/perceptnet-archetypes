@@ -19,6 +19,10 @@
             <artifactId>service-api-dto</artifactId>
             <version>${version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.perceptnet.commons</groupId>
+            <artifactId>resource-str</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

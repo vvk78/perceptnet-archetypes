@@ -1,12 +1,13 @@
-package ${package}.general.service;
+package ${package}.general.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-@Service
-public class BaseServiceImpl {
+//@RestController
+//@RequestMapping("/crm")
+public class BaseRestController {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
+
 
 }

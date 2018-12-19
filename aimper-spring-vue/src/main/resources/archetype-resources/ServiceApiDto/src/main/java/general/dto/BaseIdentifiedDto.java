@@ -34,7 +34,7 @@ public class BaseIdentifiedDto implements Identifiable<Long> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        com.aim.aimper.dom.dto.BaseIdentifiedDto that = (com.aim.aimper.dom.dto.BaseIdentifiedDto) o;
+        BaseIdentifiedDto that = (BaseIdentifiedDto) o;
 
         return id != null ? id.equals(that.id) : that.id == null;
     }

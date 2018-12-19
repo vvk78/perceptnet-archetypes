@@ -6,6 +6,14 @@
     </requiredProperties>
 
     <fileSets>
+        <!-- Common files -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>.</directory>
+            <includes>
+                <include>.gitignore</include>
+            </includes>
+        </fileSet>
+
         <!-- Conf Module -->
         <fileSet filtered="true" packaged="false" encoding="UTF-8">
             <directory>Conf</directory>
@@ -62,7 +70,10 @@
         <fileSet filtered="true" packaged="false" encoding="UTF-8">
             <directory>ServiceImpl</directory>
             <includes>
-                <include>*.xml</include>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+                <include>**/*.yaml</include>
+                <include>**/*.json</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -76,7 +87,10 @@
         <fileSet filtered="true" packaged="false" encoding="UTF-8">
             <directory>Rest</directory>
             <includes>
-                <include>*.xml</include>
+                <include>**/*.properties</include>
+                <include>**/*.xml</include>
+                <include>**/*.yaml</include>
+                <include>**/*.json</include>
             </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -86,7 +100,7 @@
             </includes>
         </fileSet>
 
-        <!-- Rest Module -->
+        <!-- IntegrationTests Module -->
         <fileSet filtered="true" packaged="false" encoding="UTF-8">
             <directory>IntegrationTests</directory>
             <includes>
@@ -103,6 +117,14 @@
             <directory>IntegrationTests/src/test/java</directory>
             <includes>
                 <include>**/*.java</include>
+            </includes>
+        </fileSet>
+
+        <!-- Web Module -->
+        <fileSet filtered="true" packaged="false" encoding="UTF-8">
+            <directory>Web</directory>
+            <includes>
+                <include>*.xml</include>
             </includes>
         </fileSet>
 

@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.perceptnet.wmcrm</groupId>
+        <artifactId>wmcrm-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>integration-tests</artifactId>
+
+    <name>Integration tests and helpers</name>
+    <packaging>jar</packaging>
+
+    <!-- Basically this module should not have any dependencies except very limited ones -->
+    <dependencies>
+        <!-- other project modules -->
+        <dependency>
+            <groupId>com.perceptnet.wmcrm</groupId>
+            <artifactId>service-api-dto</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.wmcrm</groupId>
+            <artifactId>service-api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.perceptnet.wmcrm</groupId>
+            <artifactId>service-impl</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- libraries -->
+    </dependencies>
+
+
+</project>

@@ -1,4 +1,4 @@
-package ${package}.api.reference;
+package ${package}.service.reference;
 
 public interface ExampleService {
     /**
@@ -13,5 +13,5 @@ public interface ExampleService {
      * @param example info to save
      * @return id of saved example.
      */
-    long saveExample(ExampleShortDto example);
+    Long saveExample(ExampleShortDto example);
 }
